@@ -1,0 +1,70 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "webkit-issue"
+dynamic = ["version"]
+description = ''
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Laurent", email = "lalmeras@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = []
+
+[project.urls]
+Documentation = "https://github.com/Laurent/webkit-issue#readme"
+Issues = "https://github.com/Laurent/webkit-issue/issues"
+Source = "https://github.com/Laurent/webkit-issue"
+
+[project.scripts]
+webkit-issue = "webkit_issue.cli:run"
+
+[tool.hatch.version]
+path = "src/webkit_issue/__about__.py"
+
+[tool.hatch.envs.default]
+system-packages = true
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src"]
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/webkit_issue tests}"
+
+[tool.coverage.run]
+source_pkgs = ["webkit_issue", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/webkit_issue/__about__.py",
+]
+
+[tool.coverage.paths]
+webkit_issue = ["src/webkit_issue", "*/webkit-issue/src/webkit_issue"]
+tests = ["tests", "*/webkit-issue/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]

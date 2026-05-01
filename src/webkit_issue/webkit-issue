@@ -1,0 +1,7 @@
+#! /usr/bin/python
+
+import sys
+sys.path.append("/app/")
+
+from webkit_issue.cli import run
+run()

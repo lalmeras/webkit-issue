@@ -1,0 +1,29 @@
+{
+  "app-id" : "com.github.lalmeras.WebkitIssue",
+  "runtime" : "org.gnome.Platform",
+  "runtime-version" : "50",
+  "sdk" : "org.gnome.Sdk",
+  "command" : "/app/webkit_issue/webkit-issue",
+  "finish-args" : [
+    "--share=network",
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--socket=wayland",
+    "--socket=pulseaudio",
+    "--device=dri"
+  ],
+  "modules" : [
+    {
+      "name" : "webkit-issue",
+      "buildsystem" : "simple",
+      "build-commands": ["pip install --target /app/ --no-deps *.whl"],
+      "builddir" : true,
+      "sources" : [
+        {
+          "type" : "file",
+          "path" : "dist/webkit_issue-0.0.1-py3-none-any.whl"
+        }
+      ]
+    }
+  ]
+}

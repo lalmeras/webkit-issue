@@ -1,0 +1,4 @@
+dist/
+builddir/
+.flatpak-builder/
+*.pyc
